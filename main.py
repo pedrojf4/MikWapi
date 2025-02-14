@@ -14,13 +14,27 @@ HEADERS = {'Content-Type': 'application/json', 'Authorization': f'Bearer {os.get
 
 def send_message(message):
     data = {
-                "messaging_product": "whatsapp",
-                "to": "3158376046",
-                "type": "text",
-                "text":{
-                "body": message
+    "messaging_product": "whatsapp",
+    "to": "573158376046",
+    "type": "template",
+    "template": {
+        "name": "energia_orbimax",
+        "language": {
+            "code": "es_CO"
+        },
+        "components": [
+            {
+                "type" : "body",
+                "parameters": [
+                    {
+                        "type": "text",
+                        "text": message
+                    }
+               ]
+            }
+        ]
     }
-    }
+}
     data = json.dumps(data)
     response = requests.post(url=URL,headers=HEADERS, data=data)
     print(response)
